@@ -10,6 +10,7 @@ public class Jogo {
 	private String nome;
 	private double preco, jogadorZerou;
 	private int maiorScore, quantidadeJogadas;
+	private Jogabilidade tipo;
 	
 	/**
 	 * Construtor da classe Jogo
@@ -61,4 +62,53 @@ public class Jogo {
 	           throw new Exception("Preco do jogo nao pode ser menor ou igual a zero");
 	       }
 	   }
+	
+	/**
+	 * Getters
+	 * @return
+	 */
+	public String getNome() {
+		return nome;
+	}
+	public double getPreco() {
+		return preco;
+	}
+	public double getJogadorZerou() {
+		return jogadorZerou;
+	}
+	public int getMaiorScore() {
+		return maiorScore;
+	}
+	public int getQuantidadeJogadas() {
+		return quantidadeJogadas;
+	}
+	public Jogabilidade getTipo() {
+		return tipo;
+	}
+	
+	/**
+	 * Setters
+	 * @param nome
+	 */
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+	public void setJogadorZerou(double jogadorZerou) {
+		this.jogadorZerou = jogadorZerou;
+	}
+	public void setMaiorScore(int maiorScore) {
+		this.maiorScore = maiorScore;
+	}
+	public void setQuantidadeJogadas(int quantidadeJogadas) {
+		this.quantidadeJogadas = quantidadeJogadas;
+	}
+	public void setTipo(Jogabilidade tipo) {
+		this.tipo = tipo;
+	}
+	
+
+	
 }

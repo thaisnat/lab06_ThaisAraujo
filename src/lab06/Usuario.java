@@ -43,6 +43,7 @@ public class Usuario {
 	           throw new Exception("Nome do usuario nao pode ser nulo ou vazio");
 	       }
 	   }
+	
 	/**
 	 * Metodo do tratamento de erro do exception
 	 * Verifica se o login do usuario eh null ou vazio
@@ -55,16 +56,79 @@ public class Usuario {
 	       }
 	   }
 	
-	public boolean compraJogos(String nomeJogo){
-		for (Jogo jogo : listaJogos) {
-			if (listaJogos.contains(nomeJogo)) {
-				return false;
-			} else {
-				listaJogos.add(jogo);
-				return true;
-			}
+	/**
+	 * Metodo do tratamento de erro do exception
+	 * verifica se o jogo eh null
+	 * @param jogo
+	 * @throws Exception
+	 */
+	private void testaJogo(Jogo jogo) throws Exception{
+		if (jogo == null){
+			throw new Exception("Jogo nao pode ser null");
 		}
-		return false;
 	}
 	
+	/**
+	 * Metodo que verifica se o usuario tem o jogo
+	 * se nao tiver ele o adiciona
+	 * @param nomeJogo
+	 * @return
+	 */
+	public boolean compraJogos(Jogo jogoRecebido){
+		if (listaJogos.contains(jogoRecebido)) {
+			return false;
+		} else {
+			listaJogos.add(jogoRecebido);
+			return true;
+		}
+	}
+	
+	/**
+	 * Metodo que adiciona dinheiro para o usuario
+	 * @param valor
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean adicionaDinheiro(double valor) throws Exception {
+		if (valor > 0) {
+			this.setDinheiro(this.getDinheiro() + valor);
+			return true;
+		} else {
+			throw new Exception("Valor nao pode ser menor ou igual a zero");
+		}
+	}
+	
+	/**
+	 * Getters
+	 * @return
+	 */
+	public String getNomeUsuario() {
+		return nomeUsuario;
+	}
+	public String getLogin() {
+		return login;
+	}
+	public double getDinheiro() {
+		return dinheiro;
+	}
+	public ArrayList<Jogo> getListaJogos() {
+		return listaJogos;
+	}
+	
+	/**
+	 * Setters
+	 * @param nomeUsuario
+	 */
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	public void setDinheiro(double dinheiro) {
+		this.dinheiro = dinheiro;
+	}
+	public void setListaJogos(ArrayList<Jogo> listaJogos) {
+		this.listaJogos = listaJogos;
+	}
 }

@@ -16,8 +16,16 @@ public class Veterano extends Usuario{
 	public Veterano(String nomeUsuario, String login, double dinheiro) throws Exception {
 		super(nomeUsuario, login, dinheiro);
 	}
-	
-	public double calculaDesconto(double valorDesconto){
-		return 0.0;
+
+	@Override
+	double calculaDesconto(double preco) {
+		double valor = preco - (preco * 0.15);
+		return valor;
 	}
+	
+	public int bonificacaoJogo(){
+		return 15;
+	}
+	
+	
 }

@@ -7,7 +7,7 @@ package lab06;
 public class Noob extends Usuario{
 	/**
 	 * Construtor da classe Noob
-	 * Sub Classe
+	 * Sub Classe de Usuario
 	 * @param nomeUsuario
 	 * @param login
 	 * @param dinheiro
@@ -17,9 +17,16 @@ public class Noob extends Usuario{
 		super(nomeUsuario, login, dinheiro);
 		
 	}
-	
-	public double calculaDesconto(double valorDesconto){
-		return 0.0;
+
+	@Override
+	double calculaDesconto(double preco) {
+		double valor = preco - (preco * 0.10);
+		return valor;
 	}
+	
+	public int bonificacaoJogo(){
+		return 10;
+	}
+	
 
 }

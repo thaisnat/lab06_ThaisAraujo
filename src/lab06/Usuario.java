@@ -7,12 +7,13 @@ import java.util.ArrayList;
  * @author thaisnat
  *
  */
-public class Usuario {
+public abstract class Usuario {
 	
 	// atributos
 	private String nomeUsuario , login;
 	private ArrayList<Jogo> listaJogos;
 	private double dinheiro;
+	private int x2p;
 	
 	/**
 	 * Construtor da classe Usuario
@@ -25,11 +26,12 @@ public class Usuario {
 		
 		testandoNome(nomeUsuario);
 		testandoLogin(login);
+		testandoDinheiro(dinheiro);
 		
 		this.nomeUsuario = nomeUsuario;
 		this.login = login;
 		this.dinheiro = dinheiro;
-		listaJogos = new ArrayList<Jogo>();	
+		this.listaJogos = new ArrayList<>();	
 	}
 	
 	/**
@@ -62,9 +64,21 @@ public class Usuario {
 	 * @param jogo
 	 * @throws Exception
 	 */
-	private void testaJogo(Jogo jogo) throws Exception{
+	private void testandoJogo(Jogo jogo) throws Exception{
 		if (jogo == null){
 			throw new Exception("Jogo nao pode ser null");
+		}
+	}
+	
+	/**
+	 * Metodo do tratamento de erro do exception
+	 * verfica se o valor do dinheiro passado eh menor ou igual a zero
+	 * @param dinheiro
+	 * @throws Exception
+	 */
+	private void testandoDinheiro(double dinheiro) throws Exception{
+		if(dinheiro < 0.0){
+			throw new Exception("O valor de dinheiro nao pode ser menor ou igual a zero");
 		}
 	}
 	
@@ -74,15 +88,28 @@ public class Usuario {
 	 * @param nomeJogo
 	 * @return
 	 */
-	public boolean compraJogos(Jogo jogoRecebido){
-		if (listaJogos.contains(jogoRecebido)) {
-			return false;
-		} else {
-			listaJogos.add(jogoRecebido);
-			return true;
+	public boolean compraJogo(Jogo jogoRecebido){
+		if(dinheiro >= calculaDesconto(jogoRecebido.getPreco())){
+			if (listaJogos.contains(jogoRecebido)) {
+				return false;
+			} else {
+				this.setDinheiro(this.getDinheiro() - this.calculaDesconto(jogoRecebido.getPreco()));
+				return listaJogos.add(jogoRecebido);
+			}
 		}
+		return false;
 	}
 	
+	/**
+	 * Metodo abstrato que sera utilizado no metodo compraJogo
+	 * o mesmo esta nas classes Noob e Veterano 
+	 * de onde sera utilizado
+	 * @param preco
+	 * @return
+	 */
+	abstract double calculaDesconto(double preco);
+	
+
 	/**
 	 * Metodo que adiciona dinheiro para o usuario
 	 * @param valor
@@ -97,6 +124,20 @@ public class Usuario {
 			throw new Exception("Valor nao pode ser menor ou igual a zero");
 		}
 	}
+	
+	/**
+	 * Metodo que calcula o valor atual do x2p
+	 * @param valor
+	 * @return
+	 */
+	public int calculaX2p(Jogo jogoRecebido){
+		int somaX2p;
+		somaX2p = getX2p() + (int)jogoRecebido.getPreco() * bonificacaoJogo();
+		this.setX2p(somaX2p);
+		return getX2p();
+	}
+	
+	abstract int bonificacaoJogo();
 	
 	/**
 	 * Getters
@@ -114,10 +155,15 @@ public class Usuario {
 	public ArrayList<Jogo> getListaJogos() {
 		return listaJogos;
 	}
+	public int getX2p() {
+		return x2p;
+	}
 	
 	/**
 	 * Setters
 	 * @param nomeUsuario
+	 * @param login
+	 * @param dinheiro
 	 */
 	public void setNomeUsuario(String nomeUsuario) {
 		this.nomeUsuario = nomeUsuario;
@@ -131,4 +177,11 @@ public class Usuario {
 	public void setListaJogos(ArrayList<Jogo> listaJogos) {
 		this.listaJogos = listaJogos;
 	}
+
+
+	public void setX2p(int x2p) {
+		this.x2p = x2p;
+	}
+
+	
 }

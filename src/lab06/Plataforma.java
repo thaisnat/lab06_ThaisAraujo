@@ -17,4 +17,11 @@ public class Plataforma extends Jogo{
 		
 	}
 
+	@Override
+	public int pontosExtra() {
+		int valor = 0;
+		valor = valor + (int)(super.getJogadorZerou()*20);
+		return valor;
+	}
+
 }

@@ -24,9 +24,9 @@ public abstract class Usuario {
 	 */
 	public Usuario(String nomeUsuario, String login, double dinheiro) throws Exception{
 		
-		testandoNome(nomeUsuario);
-		testandoLogin(login);
-		testandoDinheiro(dinheiro);
+		TestesUsuario.testandoNome(nomeUsuario);
+		TestesUsuario.testandoLogin(login);
+		TestesUsuario.testandoDinheiro(dinheiro);
 		
 		this.nomeUsuario = nomeUsuario;
 		this.login = login;
@@ -34,53 +34,7 @@ public abstract class Usuario {
 		this.listaJogos = new ArrayList<>();	
 	}
 	
-	/**
-	 * Metodo do tratamento de erro do exception
-	 * Verifica se o nome do usuario eh null ou vazio
-	 * @param nomeUsuario
-	 * @throws Exception
-	 */
-	private void testandoNome(String nomeUsuario) throws Exception{
-	       if (nomeUsuario == null || nomeUsuario.trim().equals("")) {
-	           throw new Exception("Nome do usuario nao pode ser nulo ou vazio");
-	       }
-	   }
 	
-	/**
-	 * Metodo do tratamento de erro do exception
-	 * Verifica se o login do usuario eh null ou vazio
-	 * @param login
-	 * @throws Exception
-	 */
-	private void testandoLogin(String login) throws Exception{
-	       if (login == null || login.trim().equals("")) {
-	           throw new Exception("Login do usuario nao pode ser nulo ou vazio");
-	       }
-	   }
-	
-	/**
-	 * Metodo do tratamento de erro do exception
-	 * verifica se o jogo eh null
-	 * @param jogo
-	 * @throws Exception
-	 */
-	private void testandoJogo(Jogo jogo) throws Exception{
-		if (jogo == null){
-			throw new Exception("Jogo nao pode ser null");
-		}
-	}
-	
-	/**
-	 * Metodo do tratamento de erro do exception
-	 * verfica se o valor do dinheiro passado eh menor ou igual a zero
-	 * @param dinheiro
-	 * @throws Exception
-	 */
-	private void testandoDinheiro(double dinheiro) throws Exception{
-		if(dinheiro < 0.0){
-			throw new Exception("O valor de dinheiro nao pode ser menor ou igual a zero");
-		}
-	}
 	
 	/**
 	 * Metodo que verifica se o usuario tem o jogo
@@ -139,6 +93,18 @@ public abstract class Usuario {
 	
 	abstract int bonificacaoJogo();
 	
+	public void registraJogada(String nomeDoJogo, int score, boolean zerou){
+		
+	}
+	
+	
+	/**
+	 * Metodos Get e Set
+	 * HashCode
+	 * Equals
+	 * toString 
+	 */
+	
 	/**
 	 * Getters
 	 * @return
@@ -177,8 +143,6 @@ public abstract class Usuario {
 	public void setListaJogos(ArrayList<Jogo> listaJogos) {
 		this.listaJogos = listaJogos;
 	}
-
-
 	public void setX2p(int x2p) {
 		this.x2p = x2p;
 	}

@@ -19,4 +19,11 @@ public class Luta extends Jogo{
 	public void registraJogada(int score, boolean zerou){
 		
 	}
+
+	@Override
+	public int pontosExtra() {
+		int valor = 0;
+		valor = valor + (super.getMaiorScore()/1000);
+		return valor;
+	}
 }

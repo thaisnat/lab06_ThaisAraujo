@@ -18,6 +18,11 @@ public class RPG extends Jogo {
 		
 	}
 	
+	@Override
+	public int pontosExtra(){
+		return 10;
+	}
+	
 	
 
 }

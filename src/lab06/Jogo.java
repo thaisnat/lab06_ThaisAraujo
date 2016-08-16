@@ -4,13 +4,14 @@ package lab06;
  * @author thaisnat
  *
  */
-public class Jogo {
+public abstract class Jogo {
 	
 	// atributos
 	private String nome;
 	private double preco, jogadorZerou;
 	private int maiorScore, quantidadeJogadas;
 	private Jogabilidade tipo;
+	private Usuario usuario;
 	
 	/**
 	 * Construtor da classe Jogo
@@ -20,8 +21,8 @@ public class Jogo {
 	 */
 	public Jogo(String nome, double preco) throws Exception{
 		
-		testandoNome(nome);
-		testandoPreco(preco);
+		TestesJogo.testandoNome(nome);
+		TestesJogo.testandoPreco(preco);
 		
 		this.nome = nome;
 		preco = 0.0;
@@ -39,29 +40,18 @@ public class Jogo {
 			jogadorZerou = jogadorZerou + 1;
 
 		}
+		
+		
 	}
+	
+	abstract int pontosExtra();
+	
 	/**
-	 * Metodo do tratamento de erro do exception
-	 * Verfica se o nome do jogo eh null ou vazio
-	 * @param nome
-	 * @throws Exception
+	 * Metodos Get e Set
+	 * HashCode
+	 * Equals
+	 * toString 
 	 */
-	private void testandoNome(String nome) throws Exception{
-	       if (nome == null || nome.trim().equals("")) {
-	           throw new Exception("Nome do jogo nao pode ser nulo ou vazio");
-	       }
-	   }
-	/**
-	 * Metodo do tratamento de erro do exception
-	 * Verifica se o preco do jogo eh menor ou igual a zero
-	 * @param preco
-	 * @throws Exception
-	 */
-	private void testandoPreco(double preco) throws Exception{
-	       if (preco <= 0.0) {
-	           throw new Exception("Preco do jogo nao pode ser menor ou igual a zero");
-	       }
-	   }
 	
 	/**
 	 * Getters
@@ -89,6 +79,11 @@ public class Jogo {
 	/**
 	 * Setters
 	 * @param nome
+	 * @param preco
+	 * @param jogadorZerou
+	 * @param maiorScore
+	 * @param quantidadeJogadas
+	 * @param tipo
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;

@@ -8,8 +8,8 @@ public abstract class Jogo {
 	
 	// atributos
 	private String nome;
-	private double preco, jogadorZerou;
-	private int maiorScore, quantidadeJogadas;
+	private double preco;
+	private int maiorScore, quantidadeJogadas, jogadorZerou;
 	private Jogabilidade tipo;
 	private Usuario usuario;
 	
@@ -38,10 +38,17 @@ public abstract class Jogo {
 			maiorScore = score;
 		}if (zerou == true){
 			jogadorZerou = jogadorZerou + 1;
-
 		}
 		
-		
+		/**
+		 * chamei o x2p de usuario
+		 * criei uma nova variavel para auxilio na adicao da pontuacao
+		 * usei o set para alterar o valor do x2p
+		 */
+		int x2pAtual = usuario.getX2p();
+		int novoX2p;
+		novoX2p = x2pAtual + pontosExtra();
+		usuario.setX2p(novoX2p);
 	}
 	
 	abstract int pontosExtra();
@@ -53,6 +60,11 @@ public abstract class Jogo {
 	 * toString 
 	 */
 	
+	@Override
+	public String toString() {
+		return "+" + nome + "-" + this.getClass().getSimpleName();
+	}
+	
 	/**
 	 * Getters
 	 * @return
@@ -63,7 +75,7 @@ public abstract class Jogo {
 	public double getPreco() {
 		return preco;
 	}
-	public double getJogadorZerou() {
+	public int getJogadorZerou() {
 		return jogadorZerou;
 	}
 	public int getMaiorScore() {
@@ -91,7 +103,7 @@ public abstract class Jogo {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
-	public void setJogadorZerou(double jogadorZerou) {
+	public void setJogadorZerou(int jogadorZerou) {
 		this.jogadorZerou = jogadorZerou;
 	}
 	public void setMaiorScore(int maiorScore) {

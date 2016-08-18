@@ -16,9 +16,6 @@ public class Luta extends Jogo{
 		super(nome, preco);
 	}
 	
-	public void registraJogada(int score, boolean zerou){
-		
-	}
 
 	@Override
 	public int pontosExtra() {

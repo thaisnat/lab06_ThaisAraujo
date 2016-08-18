@@ -37,16 +37,5 @@ public class TestesUsuario extends Exception {
 		}
 	}
 	
-	/**
-	 * Metodo do tratamento de erro do exception
-	 * verifica se o jogo eh null
-	 * @param jogo
-	 * @throws Exception
-	 */
-	public void testandoJogo(Jogo jogo) throws Exception{
-		if (jogo == null){
-			throw new Exception("Jogo nao pode ser null");
-		}
-	}
 
 }

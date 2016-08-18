@@ -11,11 +11,11 @@ public class Noob extends Usuario{
 	 * @param nomeUsuario
 	 * @param login
 	 * @param dinheiro
-	 * @throws Exception
+	 * @throws Exception 
 	 */
 	public Noob(String nomeUsuario, String login, double dinheiro) throws Exception {
 		super(nomeUsuario, login, dinheiro);
-		
+		super.setX2p(0);
 	}
 	
 	/**

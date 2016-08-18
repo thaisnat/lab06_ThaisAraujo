@@ -11,9 +11,10 @@ public abstract class Usuario {
 	
 	// atributos
 	private String nomeUsuario , login;
-	private ArrayList<Jogo> listaJogos;
-	private double dinheiro;
-	private int x2p;
+	private static ArrayList<Jogo> listaJogos;
+	private static double dinheiro;
+	private int x2p; // eXperiente Player Privilege
+	private Jogo jogo;
 	
 	/**
 	 * Construtor da classe Usuario
@@ -30,11 +31,9 @@ public abstract class Usuario {
 		
 		this.nomeUsuario = nomeUsuario;
 		this.login = login;
-		this.dinheiro = dinheiro;
-		this.listaJogos = new ArrayList<>();	
+		Usuario.dinheiro = dinheiro;
+		Usuario.listaJogos = new ArrayList<>();	
 	}
-	
-	
 	
 	/**
 	 * Metodo que verifica se o usuario tem o jogo
@@ -47,7 +46,7 @@ public abstract class Usuario {
 			if (listaJogos.contains(jogoRecebido)) {
 				return false;
 			} else {
-				this.setDinheiro(this.getDinheiro() - this.calculaDesconto(jogoRecebido.getPreco()));
+				this.setDinheiro(Usuario.getDinheiro() - this.calculaDesconto(jogoRecebido.getPreco()));
 				return listaJogos.add(jogoRecebido);
 			}
 		}
@@ -72,7 +71,7 @@ public abstract class Usuario {
 	 */
 	public boolean adicionaDinheiro(double valor) throws Exception {
 		if (valor > 0) {
-			this.setDinheiro(this.getDinheiro() + valor);
+			this.setDinheiro(Usuario.getDinheiro() + valor);
 			return true;
 		} else {
 			throw new Exception("Valor nao pode ser menor ou igual a zero");
@@ -91,12 +90,24 @@ public abstract class Usuario {
 		return getX2p();
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	abstract int bonificacaoJogo();
-	
-	public void registraJogada(String nomeDoJogo, int score, boolean zerou){
-		
+	/**
+	 * 
+	 * @param nomeDoJogo
+	 * @param score
+	 * @param zerou
+	 */
+	public void registraJogada(Jogo nomeDoJogo, int score, boolean zerou){
+		nomeDoJogo.registraJogada(score, zerou);
 	}
 	
+	private void adicionaX2p(){
+		this.getX2p();
+	}
 	
 	/**
 	 * Metodos Get e Set
@@ -104,6 +115,11 @@ public abstract class Usuario {
 	 * Equals
 	 * toString 
 	 */
+	
+	@Override
+	public String toString() {
+		return login + "/n" + nomeUsuario + "- Jogador" + this.getClass().getSimpleName();
+	}
 	
 	/**
 	 * Getters
@@ -115,10 +131,10 @@ public abstract class Usuario {
 	public String getLogin() {
 		return login;
 	}
-	public double getDinheiro() {
+	public static double getDinheiro() {
 		return dinheiro;
 	}
-	public ArrayList<Jogo> getListaJogos() {
+	public static ArrayList<Jogo> getListaJogos() {
 		return listaJogos;
 	}
 	public int getX2p() {
@@ -138,13 +154,14 @@ public abstract class Usuario {
 		this.login = login;
 	}
 	public void setDinheiro(double dinheiro) {
-		this.dinheiro = dinheiro;
+		Usuario.dinheiro = dinheiro;
 	}
 	public void setListaJogos(ArrayList<Jogo> listaJogos) {
-		this.listaJogos = listaJogos;
+		Usuario.listaJogos = listaJogos;
 	}
 	public void setX2p(int x2p) {
 		this.x2p = x2p;
+		this.adicionaX2p();
 	}
 
 	

@@ -15,6 +15,7 @@ public class Veterano extends Usuario{
 	 */
 	public Veterano(String nomeUsuario, String login, double dinheiro) throws Exception {
 		super(nomeUsuario, login, dinheiro);
+		super.setX2p(1000);
 	}
 	
 	/**
@@ -24,7 +25,7 @@ public class Veterano extends Usuario{
 	 */
 	@Override
 	double calculaDesconto(double preco) {
-		double valor = preco - (preco * 0.15);
+		double valor = preco - (preco * 0.20);
 		return valor;
 	}
 	

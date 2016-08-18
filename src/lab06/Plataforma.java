@@ -16,7 +16,7 @@ public class Plataforma extends Jogo{
 		super(nome, preco);
 		
 	}
-
+	
 	@Override
 	public int pontosExtra() {
 		int valor = 0;

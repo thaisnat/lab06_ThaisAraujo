@@ -20,7 +20,9 @@ public class RPG extends Jogo {
 	
 	@Override
 	public int pontosExtra(){
-		return 10;
+		int valor;
+		valor = (super.getJogadorZerou() * 10);
+		return valor;
 	}
 	
 	

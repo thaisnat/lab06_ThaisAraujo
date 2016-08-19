@@ -26,6 +26,14 @@ public class LojaFachada {
 		}
 		
 	}
+	
+	// fazer o upgrade
+	// addDineiro
+	// addusuario
+	
+	public void registraJogada(Jogo jogo, int score, boolean zerou){
+		jogo.registraJogada(score, zerou);
+	}
 
 	public ArrayList<Usuario> getClientes() {
 		return clientes;

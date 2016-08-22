@@ -27,9 +27,48 @@ public class LojaFachada {
 		
 	}
 	
-	// fazer o upgrade
-	// addDineiro
-	// addusuario
+	public boolean adicionaDinheiro(double valor, String login) throws Exception{
+		Usuario esseUsuario;
+		for (Usuario usuario : clientes) {
+			if(usuario.getLogin().equalsIgnoreCase(login)){
+				esseUsuario = usuario;
+				return esseUsuario.adicionaDinheiro(valor);
+			}
+		}
+		return false;
+	}
+	
+	public boolean adicionaUsuario(Usuario usuario){
+		if(!clientes.contains(usuario)){
+			return clientes.add(usuario);
+		}
+		return false;
+	}
+	
+	public boolean upgradeUsuario(String login) throws Exception{
+		Usuario esseUsuario = null;
+		for (Usuario usuario : clientes) {
+			if(usuario.getLogin().equalsIgnoreCase(login)){
+				esseUsuario = usuario;
+			} 
+		}
+		if(esseUsuario != null){
+			if(esseUsuario.getClass() == Noob.class);
+				if (esseUsuario.getX2p() >= 1000){
+					
+					String nome = esseUsuario.getNomeUsuario();
+					String novoLogin = esseUsuario.getLogin();
+					double dinheiro = esseUsuario.getDinheiro();
+					esseUsuario = new Veterano(nome, novoLogin, dinheiro);
+					int x2p = esseUsuario.getX2p();
+					esseUsuario.setX2p(x2p);
+					return true;
+				}
+		} else{
+			throw new Exception("Usuario ja eh Veterano");
+		}
+		return false;
+	}
 	
 	public void registraJogada(Jogo jogo, int score, boolean zerou){
 		jogo.registraJogada(score, zerou);
@@ -45,8 +84,22 @@ public class LojaFachada {
 
 	@Override
 	public String toString() {
-		return "=== Central P2-CG ==="+ usuario.toString();
+		StringBuilder essaString = new StringBuilder();
+		essaString.append("=== Central P2-CG ===\n");
 		
+		double total;
+		for (Usuario usuario : clientes) {
+			total = 0;
+			essaString.append(usuario.toString());
+			essaString.append("Lista de Jogos:\n");
+			for (Jogo jogo : usuario.getListaJogos()) {
+				essaString.append(jogo.toString());
+				total += jogo.getPreco();
+			}
+			essaString.append("\nTotal de preço dos jogos: R$ " + total);
+			essaString.append("--------------------------------------------");
+		}
+		return essaString.toString();
 	}
 	
 	

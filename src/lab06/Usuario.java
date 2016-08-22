@@ -46,7 +46,7 @@ public abstract class Usuario {
 			if (listaJogos.contains(jogoRecebido)) {
 				return false;
 			} else {
-				this.setDinheiro(Usuario.getDinheiro() - this.calculaDesconto(jogoRecebido.getPreco()));
+				this.setDinheiro(this.getDinheiro() - this.calculaDesconto(jogoRecebido.getPreco()));
 				return listaJogos.add(jogoRecebido);
 			}
 		}
@@ -71,7 +71,7 @@ public abstract class Usuario {
 	 */
 	public boolean adicionaDinheiro(double valor) throws Exception {
 		if (valor > 0) {
-			this.setDinheiro(Usuario.getDinheiro() + valor);
+			this.setDinheiro(this.getDinheiro() + valor);
 			return true;
 		} else {
 			throw new Exception("Valor nao pode ser menor ou igual a zero");
@@ -118,7 +118,7 @@ public abstract class Usuario {
 	
 	@Override
 	public String toString() {
-		return login + "/n" + nomeUsuario + "- Jogador" + this.getClass().getSimpleName();
+		return this.login + "/n" + nomeUsuario + "- Jogador" + this.getClass().getSimpleName() + "\n";
 	}
 	
 	/**
@@ -131,10 +131,10 @@ public abstract class Usuario {
 	public String getLogin() {
 		return login;
 	}
-	public static double getDinheiro() {
+	public double getDinheiro() {
 		return dinheiro;
 	}
-	public static ArrayList<Jogo> getListaJogos() {
+	public ArrayList<Jogo> getListaJogos() {
 		return listaJogos;
 	}
 	public int getX2p() {

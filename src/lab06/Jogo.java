@@ -62,7 +62,12 @@ public abstract class Jogo {
 	
 	@Override
 	public String toString() {
-		return "+" + nome + "-" + this.getClass().getSimpleName();
+		StringBuilder essaString = new StringBuilder();
+		essaString.append("+" + this.nome + "-" + this.getClass().getSimpleName() + ":\n");
+		essaString.append("==> Jogou " + this.getQuantidadeJogadas() + " vez(es)\n");
+		essaString.append("==> Zerou " + this.getJogadorZerou() + " vez(es)\n");
+		essaString.append("==> Maior score " + this.getMaiorScore() + ":\n");
+		return essaString.toString();
 	}
 	
 	/**

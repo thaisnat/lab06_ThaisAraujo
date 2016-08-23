@@ -1,7 +1,7 @@
-package lab06;
+package P2CentralGames;
 
 import java.util.ArrayList;
-import lab06.Usuario;
+import P2CentralGames.Usuario;
 
 public class LojaFachada {
 	
@@ -56,10 +56,11 @@ public class LojaFachada {
 			if(esseUsuario.getClass() == Noob.class);
 				if (esseUsuario.getX2p() >= 1000){
 					
-					String nome = esseUsuario.getNomeUsuario();
-					String novoLogin = esseUsuario.getLogin();
-					double dinheiro = esseUsuario.getDinheiro();
-					esseUsuario = new Veterano(nome, novoLogin, dinheiro);
+					String atribuindoNome = esseUsuario.getNomeUsuario();
+					String atribuindoLogin = esseUsuario.getLogin();
+					double atribuindoDinheiro = esseUsuario.getDinheiro();
+					
+					esseUsuario = new Veterano(atribuindoNome, atribuindoLogin, atribuindoDinheiro);
 					int x2p = esseUsuario.getX2p();
 					esseUsuario.setX2p(x2p);
 					return true;
@@ -70,10 +71,12 @@ public class LojaFachada {
 		return false;
 	}
 	
-	public void registraJogada(Jogo jogo, int score, boolean zerou){
-		jogo.registraJogada(score, zerou);
-	}
-
+	/**
+	 * Metodos Get e Set
+	 * HashCode
+	 * Equals
+	 * toString 
+	 */
 	public ArrayList<Usuario> getClientes() {
 		return clientes;
 	}
@@ -101,6 +104,4 @@ public class LojaFachada {
 		}
 		return essaString.toString();
 	}
-	
-	
 }

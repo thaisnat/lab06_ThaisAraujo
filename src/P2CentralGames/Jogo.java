@@ -1,4 +1,4 @@
-package lab06;
+package P2CentralGames;
 /**
  * 
  * @author thaisnat
@@ -39,6 +39,8 @@ public abstract class Jogo {
 		}if (zerou == true){
 			jogadorZerou = jogadorZerou + 1;
 		}
+		
+		this.quantidadeJogadas += 1;
 		
 		/**
 		 * chamei o x2p de usuario
@@ -120,7 +122,4 @@ public abstract class Jogo {
 	public void setTipo(Jogabilidade tipo) {
 		this.tipo = tipo;
 	}
-	
-
-	
 }

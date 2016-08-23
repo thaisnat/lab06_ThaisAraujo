@@ -1,21 +1,21 @@
-package lab06;
+package P2CentralGames;
 /**
  * 
  * @author thaisnat
  *
  */
-public class Noob extends Usuario{
+public class Veterano extends Usuario{
 	/**
-	 * Construtor da classe Noob
-	 * Sub Classe de Usuario
+	 * Construtor da classe Veterano
+	 * Sub Classe
 	 * @param nomeUsuario
 	 * @param login
 	 * @param dinheiro
-	 * @throws Exception 
+	 * @throws Exception
 	 */
-	public Noob(String nomeUsuario, String login, double dinheiro) throws Exception {
+	public Veterano(String nomeUsuario, String login, double dinheiro) throws Exception {
 		super(nomeUsuario, login, dinheiro);
-		super.setX2p(0);
+		super.setX2p(1000);
 	}
 	
 	/**
@@ -25,7 +25,7 @@ public class Noob extends Usuario{
 	 */
 	@Override
 	double calculaDesconto(double preco) {
-		double valor = preco - (preco * 0.10);
+		double valor = preco - (preco * 0.20);
 		return valor;
 	}
 	
@@ -34,8 +34,8 @@ public class Noob extends Usuario{
 	 * @return
 	 */
 	public int bonificacaoJogo(){
-		return 10;
+		return 15;
 	}
 	
-
+	
 }

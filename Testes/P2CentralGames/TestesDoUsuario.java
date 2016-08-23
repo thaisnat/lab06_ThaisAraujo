@@ -1,6 +1,6 @@
-package lab06;
+package P2CentralGames;
 
-public class TestesUsuario extends Exception {
+public class TestesDoUsuario extends Exception {
 	/**
 	 * Metodo do tratamento de erro do exception
 	 * Verifica se o nome do usuario eh null ou vazio
@@ -36,6 +36,5 @@ public class TestesUsuario extends Exception {
 			throw new Exception("O valor de dinheiro nao pode ser menor ou igual a zero");
 		}
 	}
-	
-
 }
+

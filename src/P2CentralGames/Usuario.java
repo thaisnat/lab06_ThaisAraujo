@@ -1,4 +1,4 @@
-package lab06;
+package P2CentralGames;
 
 import java.util.ArrayList;
 
@@ -25,9 +25,9 @@ public abstract class Usuario {
 	 */
 	public Usuario(String nomeUsuario, String login, double dinheiro) throws Exception{
 		
-		TestesUsuario.testandoNome(nomeUsuario);
-		TestesUsuario.testandoLogin(login);
-		TestesUsuario.testandoDinheiro(dinheiro);
+		TestesDoUsuario.testandoNome(nomeUsuario);
+		TestesDoUsuario.testandoLogin(login);
+		TestesDoUsuario.testandoDinheiro(dinheiro);
 		
 		this.nomeUsuario = nomeUsuario;
 		this.login = login;
@@ -62,7 +62,6 @@ public abstract class Usuario {
 	 */
 	abstract double calculaDesconto(double preco);
 	
-
 	/**
 	 * Metodo que adiciona dinheiro para o usuario
 	 * @param valor
@@ -95,16 +94,28 @@ public abstract class Usuario {
 	 * @return
 	 */
 	abstract int bonificacaoJogo();
+
 	/**
-	 * 
-	 * @param nomeDoJogo
+	 * verifica se o usuario possui o jogo atribuido
+	 * se sim, o metodo registra a jogada
+	 * @param jogo
 	 * @param score
 	 * @param zerou
+	 * @throws Exception
 	 */
-	public void registraJogada(Jogo nomeDoJogo, int score, boolean zerou){
-		nomeDoJogo.registraJogada(score, zerou);
+	public void registraJogada(Jogo jogo, int score, boolean zerou) throws Exception{
+		if(listaJogos.contains(jogo)){
+			jogo.registraJogada(score, zerou);
+		}else{
+			throw new Exception("Jogo nao esta na lista do usuario");
+		}
+		
 	}
 	
+	/**
+	 * metodo utilizado para auxiliar a chamada do set do x2p 
+	 * nos construtores das Sub Classes
+	 */
 	private void adicionaX2p(){
 		this.getX2p();
 	}
@@ -115,11 +126,6 @@ public abstract class Usuario {
 	 * Equals
 	 * toString 
 	 */
-	
-	@Override
-	public String toString() {
-		return this.login + "/n" + nomeUsuario + "- Jogador" + this.getClass().getSimpleName() + "\n";
-	}
 	
 	/**
 	 * Getters
@@ -163,6 +169,17 @@ public abstract class Usuario {
 		this.x2p = x2p;
 		this.adicionaX2p();
 	}
+	
+	// hashCode
+	//Equals
+	
+	/**
+	 * toString
+	 */
+	@Override
+	public String toString() {
+		return this.login + "/n" + nomeUsuario + "- Jogador" + this.getClass().getSimpleName() + "\n";
 
+	}
 	
 }

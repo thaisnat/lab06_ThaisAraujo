@@ -1,4 +1,4 @@
-package lab06;
+package P2CentralGames;
 /**
  * 
  * @author thaisnat

@@ -11,8 +11,8 @@ public abstract class Usuario {
 	
 	// atributos
 	private String nomeUsuario , login;
-	private static ArrayList<Jogo> listaJogos;
-	private static double dinheiro;
+	private ArrayList<Jogo> listaJogos;
+	private double dinheiro;
 	private int x2p; // eXperiente Player Privilege
 
 	/**
@@ -30,8 +30,8 @@ public abstract class Usuario {
 		
 		this.nomeUsuario = nomeUsuario;
 		this.login = login;
-		Usuario.dinheiro = dinheiro;
-		Usuario.listaJogos = new ArrayList<>();	
+		this.dinheiro = dinheiro;
+		this.listaJogos = new ArrayList<>();	
 	}
 	
 	/**
@@ -163,10 +163,10 @@ public abstract class Usuario {
 		this.login = login;
 	}
 	public void setDinheiro(double dinheiro) {
-		Usuario.dinheiro = dinheiro;
+		this.dinheiro = dinheiro;
 	}
 	public void setListaJogos(ArrayList<Jogo> listaJogos) {
-		Usuario.listaJogos = listaJogos;
+		this.listaJogos = listaJogos;
 	}
 	public void setX2p(int x2p) {
 		this.x2p = x2p;

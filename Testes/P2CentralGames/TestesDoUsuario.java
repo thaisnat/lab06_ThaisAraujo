@@ -8,8 +8,8 @@ public class TestesDoUsuario extends Exception {
 	 * @throws Exception
 	 */
 	public static void testandoNome(String nomeUsuario) throws Exception{
-	       if (nomeUsuario == null || nomeUsuario.trim().equals("")) {
-	           throw new Exception("Nome do usuario nao pode ser nulo ou vazio");
+	       if (nomeUsuario == null || nomeUsuario.trim().isEmpty()) {
+	           throw new Exception("Nome do usuario nao pode ser nulo ou vazio.");
 	       }
 	   }
 	
@@ -20,8 +20,8 @@ public class TestesDoUsuario extends Exception {
 	 * @throws Exception
 	 */
 	public static void testandoLogin(String login) throws Exception{
-	       if (login == null || login.trim().equals("")) {
-	           throw new Exception("Login do usuario nao pode ser nulo ou vazio");
+	       if (login == null || login.trim().isEmpty()) {
+	           throw new Exception("Login do usuario nao pode ser nulo ou vazio.");
 	       }
 	   }
 	
@@ -33,7 +33,7 @@ public class TestesDoUsuario extends Exception {
 	 */
 	public static void testandoDinheiro(double dinheiro) throws Exception{
 		if(dinheiro < 0.0){
-			throw new Exception("O valor de dinheiro nao pode ser menor ou igual a zero");
+			throw new Exception("O valor de dinheiro nao pode ser menor ou igual a zero.");
 		}
 	}
 }

@@ -27,27 +27,30 @@ public abstract class Jogo {
 		this.nome = nome;
 		preco = 0.0;
 	}
+	
 	/**
 	 * Metodo que recebe um inteiro que indica a pontuacao atual do jogador
 	 * verifica se o jogador zerou o jogo
 	 * @param score
 	 * @param zerou
+	 * @throws Exception 
 	 */
-	public int registraJogada(int score, boolean zerou){
-		if (maiorScore < score) {
-			maiorScore = score;
-		}if (zerou == true){
+	public int registraJogada(int score, boolean zerou) throws Exception{
+		if(score > 0){
+			if (maiorScore < score) {
+				maiorScore = score;	
+			}
+		}else{
+			throw new Exception("Score nao pode ser menor ou igual a zero.");
+		}
+		
+		if (zerou == true){
 			zerou = true;
 			jogadorZerou = jogadorZerou + 1;
 		}
 		
 		this.quantidadeJogadas += 1;
-		
-		/**
-		 * chamei o x2p de usuario
-		 * criei uma nova variavel para auxilio na adicao da pontuacao
-		 * usei o set para alterar o valor do x2p
-		 */
+
 		int x2pAtual = pontosExtra();
 		return x2pAtual;
 	}
@@ -74,6 +77,13 @@ public abstract class Jogo {
 	/**
 	 * Getters
 	 * @return
+	 * @param nome
+	 * @param preco
+	 * @param jogadorZerou
+	 * @param maiorScore
+	 * @param quantidadeJogadas
+	 * @param tipo
+	 * @param zerou
 	 */
 	public String getNome() {
 		return nome;
@@ -93,6 +103,9 @@ public abstract class Jogo {
 	public Jogabilidade getTipo() {
 		return tipo;
 	}
+	public boolean getZerou() {
+		return zerou;
+	}
 	
 	/**
 	 * Setters
@@ -102,6 +115,7 @@ public abstract class Jogo {
 	 * @param maiorScore
 	 * @param quantidadeJogadas
 	 * @param tipo
+	 * @param zerou
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -120,5 +134,8 @@ public abstract class Jogo {
 	}
 	public void setTipo(Jogabilidade tipo) {
 		this.tipo = tipo;
+	}
+	public void setZerou(boolean zerou) {
+		this.zerou = zerou;
 	}
 }

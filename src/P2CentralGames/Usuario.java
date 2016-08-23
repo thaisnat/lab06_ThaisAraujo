@@ -14,8 +14,7 @@ public abstract class Usuario {
 	private static ArrayList<Jogo> listaJogos;
 	private static double dinheiro;
 	private int x2p; // eXperiente Player Privilege
-	private Jogo jogo;
-	
+
 	/**
 	 * Construtor da classe Usuario
 	 * Super Classe 
@@ -42,11 +41,14 @@ public abstract class Usuario {
 	 * @return
 	 */
 	public boolean compraJogo(Jogo jogoRecebido){
+		int preco = (int)jogoRecebido.getPreco();
+		
 		if(dinheiro >= calculaDesconto(jogoRecebido.getPreco())){
 			if (listaJogos.contains(jogoRecebido)) {
 				return false;
 			} else {
 				this.setDinheiro(this.getDinheiro() - this.calculaDesconto(jogoRecebido.getPreco()));
+				this.setX2p(this.getX2p() + preco * bonificacaoJogo());
 				return listaJogos.add(jogoRecebido);
 			}
 		}
@@ -103,13 +105,14 @@ public abstract class Usuario {
 	 * @param zerou
 	 * @throws Exception
 	 */
-	public void registraJogada(Jogo jogo, int score, boolean zerou) throws Exception{
+	public int registraJogada(Jogo jogo, int score, boolean zerou) throws Exception{
 		if(listaJogos.contains(jogo)){
-			jogo.registraJogada(score, zerou);
+			int pontosDaJogada = jogo.registraJogada(score, zerou);
+			this.setX2p(this.getX2p() + pontosDaJogada);
+			return this.getX2p();			
 		}else{
 			throw new Exception("Jogo nao esta na lista do usuario");
-		}
-		
+		}	
 	}
 	
 	/**

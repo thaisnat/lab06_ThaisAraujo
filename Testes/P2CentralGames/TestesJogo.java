@@ -22,7 +22,7 @@ public class TestesJogo extends Exception{
 	 */
 	public static void testandoPreco(double preco) throws Exception{
 	       if (preco <= 0.0) {
-	           throw new Exception("Preco do jogo nao pode ser menor ou igual a zero");
+	           throw new Exception("Preco do jogo nao pode ser menor ou igual a zero.");
 	       }
 	   }
 }

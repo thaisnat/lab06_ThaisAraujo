@@ -10,8 +10,8 @@ public abstract class Jogo {
 	private String nome;
 	private double preco;
 	private int maiorScore, quantidadeJogadas, jogadorZerou;
+	private boolean zerou;
 	private Jogabilidade tipo;
-	private Usuario usuario;
 	
 	/**
 	 * Construtor da classe Jogo
@@ -33,10 +33,11 @@ public abstract class Jogo {
 	 * @param score
 	 * @param zerou
 	 */
-	public void registraJogada(int score, boolean zerou){
+	public int registraJogada(int score, boolean zerou){
 		if (maiorScore < score) {
 			maiorScore = score;
 		}if (zerou == true){
+			zerou = true;
 			jogadorZerou = jogadorZerou + 1;
 		}
 		
@@ -47,10 +48,8 @@ public abstract class Jogo {
 		 * criei uma nova variavel para auxilio na adicao da pontuacao
 		 * usei o set para alterar o valor do x2p
 		 */
-		int x2pAtual = usuario.getX2p();
-		int novoX2p;
-		novoX2p = x2pAtual + pontosExtra();
-		usuario.setX2p(novoX2p);
+		int x2pAtual = pontosExtra();
+		return x2pAtual;
 	}
 	
 	abstract int pontosExtra();

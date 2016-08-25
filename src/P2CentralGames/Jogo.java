@@ -64,16 +64,6 @@ public abstract class Jogo {
 	 * toString 
 	 */
 	
-	@Override
-	public String toString() {
-		StringBuilder essaString = new StringBuilder();
-		essaString.append("+" + this.nome + "-" + this.getClass().getSimpleName() + ":\n");
-		essaString.append("==> Jogou " + this.getQuantidadeJogadas() + " vez(es)\n");
-		essaString.append("==> Zerou " + this.getJogadorZerou() + " vez(es)\n");
-		essaString.append("==> Maior score " + this.getMaiorScore() + ":\n");
-		return essaString.toString();
-	}
-	
 	/**
 	 * Getters
 	 * @return
@@ -137,5 +127,45 @@ public abstract class Jogo {
 	}
 	public void setZerou(boolean zerou) {
 		this.zerou = zerou;
+	}
+	
+	/**
+	 * HashCode igual ao Equals
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(preco);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	/**
+	 * Equals pelo Preco
+	 */
+	public boolean equals(Object obj){
+		if(!(obj instanceof Jogo)){
+			return false;
+		}
+		Jogo outro = (Jogo) obj;
+		if(getPreco() == outro.getPreco()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/**
+	 * toString
+	 */
+	@Override
+	public String toString() {
+		StringBuilder essaString = new StringBuilder();
+		essaString.append("+" + this.nome + "-" + this.getClass().getSimpleName() + ":\n");
+		essaString.append("==> Jogou " + this.getQuantidadeJogadas() + " vez(es)\n");
+		essaString.append("==> Zerou " + this.getJogadorZerou() + " vez(es)\n");
+		essaString.append("==> Maior score " + this.getMaiorScore() + ":\n");
+		return essaString.toString();
 	}
 }

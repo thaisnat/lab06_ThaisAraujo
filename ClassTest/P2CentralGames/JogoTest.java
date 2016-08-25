@@ -1,5 +1,9 @@
 package P2CentralGames;
-
+/**
+ * 
+ * @author thaisnat
+ *
+ */
 import static org.junit.Assert.*;
 
 import org.junit.Assert;
@@ -180,4 +184,5 @@ public class JogoTest {
 	}
 		
 }
+
 

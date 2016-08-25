@@ -44,7 +44,7 @@ public abstract class Usuario {
 		int preco = (int)jogoRecebido.getPreco();
 		
 		if(dinheiro >= calculaDesconto(jogoRecebido.getPreco())){
-			if (listaJogos.contains(jogoRecebido)) {
+			if (verificaJogo(jogoRecebido)) {
 				return false;
 			} else {
 				this.setDinheiro(this.getDinheiro() - this.calculaDesconto(jogoRecebido.getPreco()));
@@ -106,7 +106,7 @@ public abstract class Usuario {
 	 * @throws Exception
 	 */
 	public int registraJogada(Jogo jogo, int score, boolean zerou) throws Exception{
-		if(listaJogos.contains(jogo)){
+		if(verificaJogo(jogo)){
 			int pontosDaJogada = jogo.registraJogada(score, zerou);
 			this.setX2p(this.getX2p() + pontosDaJogada);
 			return this.getX2p();			
@@ -121,6 +121,20 @@ public abstract class Usuario {
 	 */
 	private void adicionaX2p(){
 		this.getX2p();
+	}
+	
+	/**
+	 * metodo que verifica se o jogo existe
+	 * @param jogoRecebido
+	 * @return
+	 */
+	public boolean verificaJogo(Jogo jogoRecebido) {
+		for (Jogo jogo : listaJogos) {
+			if (jogo.equals(jogoRecebido)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**
@@ -173,9 +187,34 @@ public abstract class Usuario {
 		this.adicionaX2p();
 	}
 	
-	// hashCode
-	//Equals
-	
+	/**
+	 * HashCode igual ao Equals 
+	 * @return
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		return result;
+	}
+	/**
+	 * Equals pelo Login
+	 * @param obj
+	 * @return
+	 */
+	public boolean equals(Object obj){
+		if(!(obj instanceof Usuario)){
+			return false;
+		}
+		Usuario outro = (Usuario) obj;
+		if(getLogin() == outro.getLogin()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	/**
 	 * toString
 	 */

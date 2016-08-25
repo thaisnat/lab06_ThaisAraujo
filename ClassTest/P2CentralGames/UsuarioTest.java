@@ -1,5 +1,9 @@
 package P2CentralGames;
-
+/**
+ * 
+ * @author thaisnat
+ *
+ */
 import static org.junit.Assert.*;
 
 import org.junit.Assert;
@@ -7,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import P2CentralGames.Usuario;
+import P2CentralGames.Jogo;
 
 public class UsuarioTest {
 	
@@ -14,6 +19,9 @@ public class UsuarioTest {
 	private Usuario hyvilly;
 	private Usuario luan;
 	private Usuario lucas;
+	
+	private Jogo gameOne;
+	private Jogo gameTwo;
 
 	@Before
 	public void setUp() throws Exception{
@@ -139,15 +147,42 @@ public class UsuarioTest {
 	}
 	
 	@Test
-	public void compraJogoTest(){
+	public void compraJogoTest() throws Exception{
 		
+		gameOne = new P2CentralGames.RPG("World of Warcraft", 15.0);
+		gameTwo = new P2CentralGames.Luta("Rampage", 25.0);
+		
+		assertTrue(pamela.compraJogo(gameOne));
+		assertFalse(pamela.compraJogo(gameOne));
+		
+		assertTrue(pamela.verificaJogo(gameOne));
+		assertFalse(luan.verificaJogo(gameTwo));
 	}
 	
+	/**
+	 * Registry Joked
+	 * @throws Exception
+	 */
 	
-	
-	
-	
-	
-	
+	@Test
+	public void registraJogadaTest() throws Exception{
+		
+		hyvilly.registraJogada(gameOne, 800, true);
+		lucas.registraJogada(gameTwo, 1010, false);
+		
+		assertEquals(1, gameOne.getQuantidadeJogadas());
+		assertNotEquals(0, gameOne.getJogadorZerou());
+		assertEquals(1010, lucas.getX2p());
+		assertEquals(0, gameTwo.getJogadorZerou());
+
+		assertEquals(10, hyvilly.getX2p());
+		assertEquals(1025, lucas.getX2p());
+		
+		hyvilly.compraJogo(gameOne);
+		assertEquals(20, hyvilly.getX2p());
+		hyvilly.compraJogo(gameTwo);
+		assertEquals(30, hyvilly.getX2p());
+		lucas.compraJogo(gameOne);	
+	}
 	
 }

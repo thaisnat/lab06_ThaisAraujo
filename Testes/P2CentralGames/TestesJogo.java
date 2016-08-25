@@ -9,7 +9,7 @@ public class TestesJogo extends Exception{
 	 * @throws Exception
 	 */
 	public static void testandoNome(String nome) throws Exception{
-	       if (nome == null || nome.trim().isEmpty()) {
+	       if (nome == null || nome.trim().equals("")) {
 	           throw new Exception("Nome do jogo nao pode ser nulo ou vazio.");
 	       }
 	   }
@@ -21,8 +21,8 @@ public class TestesJogo extends Exception{
 	 * @throws Exception
 	 */
 	public static void testandoPreco(double preco) throws Exception{
-	       if (preco <= 0) {
-	           throw new Exception("Preco do jogo nao pode ser menor ou igual a zero.");
+	       if (preco <= 0.0) {
+	           throw new Exception("Preco do jogo nao pode ser menor ou igual a zero");
 	       }
 	   }
 }

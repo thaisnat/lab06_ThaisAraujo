@@ -2,14 +2,22 @@ package P2CentralGames;
 
 import java.util.ArrayList;
 import P2CentralGames.Usuario;
-
+/**
+ * 
+ * @author thaisnat
+ *
+ */
 public class LojaFachada {
 	
 	// atributos
 	private ArrayList<Usuario> clientes;
 	private Usuario usuario;
 	
-	
+	/**
+	 * Construtor da Classe LojaFachada
+	 * @param clientes
+	 * @param usuario
+	 */
 	public LojaFachada(ArrayList<Usuario> clientes, Usuario usuario) {
 		super();
 			
@@ -17,7 +25,12 @@ public class LojaFachada {
 		this.usuario = usuario;
 		
 	}
-
+	/**
+	 * 
+	 * @param jogo
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean vendeJogo(Jogo jogo) throws Exception{
 		if(jogo == null){
 			throw new Exception("Jogo nao pode ser null");
@@ -26,7 +39,13 @@ public class LojaFachada {
 		}
 		
 	}
-	
+	/**
+	 * 
+	 * @param valor
+	 * @param login
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean adicionaDinheiro(double valor, String login) throws Exception{
 		Usuario esseUsuario;
 		for (Usuario usuario : clientes) {
@@ -37,14 +56,25 @@ public class LojaFachada {
 		}
 		return false;
 	}
-	
-	public boolean adicionaUsuario(Usuario usuario){
-		if(!clientes.contains(usuario)){
+	/**
+	 * 
+	 * @param usuario
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean adicionaUsuario(Usuario usuario) throws Exception{
+		if(clientes.contains(usuario)){
+			throw new Exception("ja contem o usuario na lista de clientes");
+		}else{
 			return clientes.add(usuario);
-		}
-		return false;
+		} 
 	}
-	
+	/**
+	 * Verifica se o usuario Noob tem x2p suficiente para se tornar um Veterano
+	 * @param login
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean upgradeUsuario(String login) throws Exception{
 		Usuario esseUsuario = null;
 		for (Usuario usuario : clientes) {
@@ -84,7 +114,36 @@ public class LojaFachada {
 	public void setClientes(ArrayList<Usuario> clientes) {
 		this.clientes = clientes;
 	}
+	
+	/**
+	 * HashCode igual ao Equals
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((clientes == null) ? 0 : clientes.hashCode());
+		return result;
+	}
+	/**
+	 * Equals pela lista de clientes
+	 */
+	public boolean equals(Object obj){
+		if(!(obj instanceof LojaFachada)){
+			return false;
+		}
+		LojaFachada outro = (LojaFachada) obj;
+		if(getClientes() == outro.getClientes()){
+			return true;
+		}else{
+			return false;
+		}
 
+	}
+	/**
+	 * toString
+	 */
 	@Override
 	public String toString() {
 		StringBuilder essaString = new StringBuilder();
